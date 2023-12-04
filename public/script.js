@@ -398,7 +398,7 @@ export const saveCharacterDebounced = debounce(() => $("#create_button").trigger
 
 const system_message_types = {
     HELP: "help",
-    WELCOME: "welcome",
+    WELCOME: "",
     GROUP: "group",
     EMPTY: "empty",
     GENERIC: "generic",
@@ -7730,6 +7730,11 @@ jQuery(async function () {
         const id = $(this).attr("chid");
         await selectCharacterById(id);
     });
+
+    //Auto load first character
+    setTimeout(function(){
+        selectCharacterById(0);
+    },1000);
 
     $(document).on("click", ".bogus_folder_select", function () {
         const tagId = $(this).attr('tagid');

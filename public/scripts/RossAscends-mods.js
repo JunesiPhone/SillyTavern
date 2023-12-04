@@ -950,6 +950,15 @@ export function initRossMods() {
         processHotkeys(event.originalEvent);
     });
 
+    //iOS dismiss keyboard on enter
+    if(power_user.dismiss_keyboard_enter){
+        $(document).on('keyup', function (event) {
+            if (event.key === "Enter") {
+                $(':focus').blur();
+            }
+        });
+    }
+
     //Additional hotkeys CTRL+ENTER and CTRL+UPARROW
     /**
      * @param {KeyboardEvent} event
@@ -963,6 +972,7 @@ export function initRossMods() {
                 Generate();
             }
         }
+        
         if ($(':focus').attr('id') === 'dialogue_popup_input' && !isMobile()) {
             if (!event.shiftKey && !event.ctrlKey && event.key == "Enter") {
                 event.preventDefault();

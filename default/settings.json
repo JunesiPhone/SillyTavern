@@ -111,6 +111,7 @@
         "auto_scroll_chat_to_bottom": true,
         "auto_fix_generated_markdown": false,
         "send_on_enter": 0,
+        "dismiss_keyboard_enter": false,
         "console_log_prompts": false,
         "render_formulas": false,
         "allow_name1_display": false,

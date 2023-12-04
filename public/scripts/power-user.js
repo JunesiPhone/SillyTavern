@@ -157,6 +157,7 @@ let power_user = {
     auto_fix_generated_markdown: true,
     send_on_enter: send_on_enter_options.AUTO,
     console_log_prompts: false,
+    dismiss_keyboard_enter: false,
     render_formulas: false,
     allow_name1_display: false,
     allow_name2_display: false,
@@ -1339,6 +1340,7 @@ function loadPowerUserSettings(settings, data) {
     $('#bogus_folders').prop("checked", power_user.bogus_folders);
     $(`#tokenizer option[value="${power_user.tokenizer}"]`).attr('selected', true);
     $(`#send_on_enter option[value=${power_user.send_on_enter}]`).attr("selected", true);
+    $("#dismiss_keyboard_enter").prop("checked", power_user.dismiss_keyboard_enter);
     $("#import_card_tags").prop("checked", power_user.import_card_tags);
     $("#confirm_message_delete").prop("checked", power_user.confirm_message_delete !== undefined ? !!power_user.confirm_message_delete : true);
     $("#spoiler_free_mode").prop("checked", power_user.spoiler_free_mode);
@@ -2822,6 +2824,11 @@ $(document).ready(() => {
     $("#send_on_enter").on('change', function () {
         const value = $(this).find(':selected').val();
         power_user.send_on_enter = Number(value);
+        saveSettingsDebounced();
+    });
+
+    $("#dismiss_keyboard_enter").on('input', function () {
+        power_user.dismiss_keyboard_enter = !!$(this).prop('checked');
         saveSettingsDebounced();
     });
 
